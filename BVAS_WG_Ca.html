@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculadora BVAS-WG</title>
+
+<style>
+body {
+  background-color: #87CEEB;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px 0;
+}
+
+.container {
+  background-color: #fffde7;
+  width: 900px;
+  max-width: 95%;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  margin: 0 auto;
+}
+
+.title-wrapper { text-align: center; }
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  color: #3366cc;
+  border: 2px solid #3366cc;
+  border-radius: 8px;
+  background-color: #e6f0ff;
+  padding: 15px 25px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.logo { max-width: 60px; height: auto; }
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.section { margin-bottom: 25px; }
+
+.section h3 {
+  margin-bottom: 10px;
+  color: #3366cc;
+  text-decoration: underline;
+}
+
+.item {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.item-label {
+  flex: 2; /* label text takes the left side */
+}
+
+.checkbox-group {
+  flex: 1;
+  display: flex;
+  gap: 15px; /* space between Persistent and New/Worse */
+  justify-content: flex-start; /* fixed width for alignment */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #3366cc;
+  color: white;
+}
+
+button:hover { opacity: 0.85; }
+
+.result {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.reference {
+  font-size: 12px;
+  margin-top: 40px;
+  color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="title-wrapper">
+    <div class="title">
+      <img src="LogOM5.png" alt="Logo" class="logo">
+      Calculadora BVAS-WG
+    </div>
+  </div>
+
+  <div class="inner">
+    <!-- GENERAL -->
+    <div class="section">
+      <h3>General</h3>
+      <div class="item">
+        <div class="item-label">Artràlgia / Artritis:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="arthralgia"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="arthralgia"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Febre >38ºC:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="fever"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="fever"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- CUTANEOUS -->
+    <div class="section">
+      <h3>Manifestacions Cutànies</h3>
+      <div class="item">
+        <div class="item-label">Púrpura:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="purpura"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="purpura"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Úlcera cutània:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="skin_ulcer"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="skin_ulcer"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Gangrena (*Major*):</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="gangrene"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="gangrene"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- MUCOUS MEMBRANES/EYES -->
+    <div class="section">
+      <h3>Manifestacions de membranes mucoses o ulls</h3>
+      <div class="item">
+        <div class="item-label">Úlceres orals:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="mouth_ulcers"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="mouth_ulcers"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Conjuntivitis / Episcleritis:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="conjunctivits_episcleritis"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="conjunctivits_episcleritis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Massa retroorbitària / Proptosis:</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="proptosis"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="proptosis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Uveitis</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="uveitis"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="uveitis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Escleritis (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="scleritis"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="scleritis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Exsudats/Hemorràgies retinals (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="retinal_exudate"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="retinal_exudate"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- ENT -->
+    <div class="section">
+      <h3>Oïde, Nas i Coll</h3>
+      <div class="item">
+        <div class="item-label">Descàrrega nasal sanguinolenta / Crostes o úlceres nasals</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="nasal_discharge"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="nasal_discharge"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Afectació sinus paranasals</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="sinusitis"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="sinusitis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Tumefacció de glàndula salival</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="salivary_gland"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="salivary_gland"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Inflammació subglòtica</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="subglotic_inflammation"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="subglotic_inflammation"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Hipoacúsia de conducció</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="conductive_deafness"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="conductive_deafness"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Hipoacúsia neurosensorial (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="sensorineural"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="sensorineural"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- CARDIOVASCULAR -->
+    <div class="section">
+      <h3>Manifestacions Cardiovasculars</h3>
+      <div class="item">
+        <div class="item-label">Pericarditis</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="pericarditis"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="pericarditis"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- GASTROINTESTINAL -->
+    <div class="section">
+      <h3>Manifestacions Gastrointestinals</h3>
+      <div class="item">
+        <div class="item-label">Isquèmia mesentèrica (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="mesenteric_ischemia"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="mesenteric_ischemia"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- PULMONARY -->
+    <div class="section">
+      <h3>Manifestacions Pulmonars</h3>
+      <div class="item">
+        <div class="item-label">Pleuritis</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="pleurisy"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="pleurisy"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Nòduls o cavitats pulmonars</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="lung_nodules"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="lung_nodules"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Infiltrats pulmonars</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="lung_infiltrates"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="lung_infiltrates"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Afectació endobronquial</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="endobronchial"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="endobronchial"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Hemorràgia alveolar (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="alveolar hemorrhage"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="alveolar hemorrhage"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Insuficiència respiratòria (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="respiratory failure"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="respiratory failure"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- RENAL -->
+    <div class="section">
+      <h3>Manifestacions Renals</h3>
+      <div class="item">
+        <div class="item-label">Hematúria (>= 10 eritròcits/camp, sense cilindres)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="minor" data-status="persistent" data-item="hematuria"> Persistent</label>
+          <label><input type="checkbox" data-type="minor" data-status="new/worse" data-item="hematuria"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Cilindres hemàtics (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="casts"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="casts"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Augment de la creatinina >30% o descens de l'aclariment >25% (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="creatinine"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="creatinine"> Nou/Pitjor</label>
+        </div>
+      </div>
+    <!-- NERVOUS SYSTEM -->
+    <div class="section">
+      <h3>Manifestacions del Sistema Nerviós</h3>
+      <div class="item">
+        <div class="item-label">Meningitis (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="meningitis"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="meningitis"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Lesió de la mèdula espinal (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="cord"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="cord"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Ictus (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="stroke"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="stroke"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Paràlisi de nervi cranial (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="cranial_nerve"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="cranial_nerve"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Neuropatia perifèrica sensitiva (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="sensory_neuropathy"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="sensory_neuropathy"> Nou/Pitjor</label>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-label">Mononeuritis múltiple motora (*Major*)</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" data-type="major" data-status="persistent" data-item="multineuritis"> Persistent</label>
+          <label><input type="checkbox" data-type="major" data-status="new/worse" data-item="multineuritis"> Nou/Pitjor</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BUTTONS -->
+<button onclick="calculate()">Calcular BVAS-WG</button>
+<button onclick="resetForm()">Reset</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<script>
+
+// Prevent selecting Persistent + New simultaneously
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    let item = this.dataset.item;
+    let status = this.dataset.status;
+
+    if (this.checked) {
+      document.querySelectorAll(`input[data-item='${item}']`).forEach(other => {
+        if (other !== this) other.checked = false;
+      });
+    }
+  });
+});
+
+function calculate() {
+
+  let majorNew = 0, majorPersistent = 0;
+  let minorNew = 0, minorPersistent = 0;
+
+  document.querySelectorAll('input[type=checkbox]:checked').forEach(cb => {
+
+    let type = cb.dataset.type;
+    let status = cb.dataset.status;
+    let item = cb.dataset.item;
+
+    if (type === "major") {
+      if (status === "new/worse") majorNew++;
+      if (status === "persistent") majorPersistent++;
+    } else {
+      if (status === "new/worse") minorNew++;
+      if (status === "persistent") minorPersistent++;
+    }
+
+  });
+
+    let totalScore =
+    (majorNew * 3) +
+    (majorPersistent * 3) +
+    (minorNew) +
+    (minorPersistent);
+
+    let status = "";
+    if (majorNew >= 1) status = "Brot Sever de la Malaltia";
+    else if (minorNew >= 1) status = "Brot Limitat de la Malaltia";
+    else if ((majorPersistent + minorPersistent) >= 1) status = "Malaltia Persistent";
+    else status = "Malaltia en Remissió";
+
+  document.getElementById("result").innerHTML =
+    "Major Nou: " + majorNew + "<br>" +
+    "Menor Nou: " + minorNew + "<br>" +
+    "Major Persistent: " + majorPersistent + "<br>" +
+    "Menor Persistent: " + minorPersistent + "<br><br>" +
+    "Score Total: " + totalScore + "<br><br>" +
+    "Estatus de la malaltia: " + status;
+}  
+
+function resetForm() {
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+  document.getElementById('result').innerHTML = "";
+}
+
+</script>
+</body>
+</html>
+
+
